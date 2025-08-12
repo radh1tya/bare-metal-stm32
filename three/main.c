@@ -70,6 +70,7 @@ main(void)
 	GPIOA_ODR |= GPIOA12;
 	while(1)
 	{
+		exti_irqhandler();
 	}
 
 }

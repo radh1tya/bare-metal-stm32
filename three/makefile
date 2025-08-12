@@ -7,14 +7,14 @@ CFLAGS = -mthumb -mcpu=cortex-m3
 
 all: app.bin
 
-ah.o: ah.s
-	$(AS) -o ah.o ah.s
+ah.o: ../tools/ah.s
+	$(AS) -o ah.o ../tools/ah.s
 
 main.o: main.c
 	$(CC) $(CFLAGS) -c -o main.o main.c
 
-app.elf: linker.ld ah.o main.o
-	$(LD) -T linker.ld -o app.elf ah.o main.o
+app.elf: ../tools/linker.ld ah.o main.o
+	$(LD) -T ../tools/linker.ld -o app.elf ah.o main.o
 
 app.bin: app.elf
 	$(BIN) -O binary app.elf app.bin

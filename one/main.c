@@ -7,11 +7,17 @@
 
 /* APB2ENR -> enable port to other GPIO */
 #define RCC_APB2ENR *(volatile uint32_t *)(RCC_BASE + 0x18)
+
 #define GPIOC_CRH *(volatile uint32_t *)(GPIOC_BASE + 0x04)
+#define GPIOC_CRL *(volatile uint32_t *)(GPIOC_BASE * 0x00)
 #define GPIOC_ODR *(volatile uint32_t *)(GPIOC_BASE + 0x0C)
+
 #define GPIOB_CRH *(volatile uint32_t *)(GPIOB_BASE + 0x04)
+#define GPIOB_CRL *(volatile uint32_t *)(GPIOB_BASE * 0x00)
 #define GPIOB_ODR *(volatile uint32_t *)(GPIOB_BASE + 0x0C)
+
 #define GPIOA_CRH *(volatile uint32_t *)(GPIOA_BASE + 0x04)
+#define GPIOA_CRL *(volatile uint32_t *)(GPIOA_BASE * 0x00)
 #define GPIOA_ODR *(volatile uint32_t *)(GPIOA_BASE + 0x0C)
 
 #define RCC_IOPCEN (1 << 4)
@@ -47,6 +53,7 @@ void main(void)
     GPIOB_CRH = ((GPIO_CRH_RR & ~(0xFU << 4)) | (0x3U << 4));
     
     GPIOA_CRH = ((GPIO_CRH_RR & ~(0xfU << 4)) | (0x3U << 4));
+	
 	while(1) {
         GPIOC_ODR |= GPIOC13;
         ilwir();
@@ -62,6 +69,7 @@ void main(void)
         ilwir();
         GPIOA_ODR &= ~GPIOA9;
         ilwir();
+		
 		/*
         GPIOA_ODR |= GPIOA10;
         ilwir();
